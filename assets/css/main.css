@@ -19,7 +19,7 @@
 .content {
     align-items: center;
     display: flex;
-    font-family: 'Google Sans', 'Inter', sans-serif;
+    font-family: 'GoogleSans', 'Inter', sans-serif;
 
     padding: 25px;
     border: 50px solid black;
