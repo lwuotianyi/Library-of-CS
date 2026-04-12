@@ -1,14 +1,23 @@
-.pg-wrapper{
+.pg-wrapper {
     padding-top: 50px;
     display: flex;
     flex-wrap: nowrap;
     flex-flow: row;
 }
 
-.pg-sub-wrapper{
+.pg-sub-wrapper {
+    h1 {
+        font: italic bold 3em "GoogleSans", "Inter", sans-serif;
+    }
+    p {
+        font: 1em "Inter", sans-serif;
+    }
     display: flex;
     flex-wrap: nowrap;
     flex-flow: column;
+}
+
+.pg-sub-wrapper p {
 }
 
 .pg-item {
@@ -18,22 +27,26 @@
 }
 
 .pg-item .left {
-    flex:0 0 30%;
+    flex:0 0 28%;
     order: 1;
 }
 
 .pg-item .right {
-    flex:0 0 30%;
+    flex:0 0 28%;
     order: 3;
 }
 
 .pg-item .main {
-    flex:0 0 50%;
-    width: 800px;
+    flex:0 0 46%;
     order: 2;
 }
 
-.pg-title {
-    order: 1;
-    font: italic bold 3em "GoogleSans", "Inter", sans-serif;
+@media (max-width: 800px) {
+    .pg-item .left,
+     .pg-item .right{
+        flex: 0 0 10%;
+    }
+    .pg-item .main{
+        flex: 0 0 80%;
+    }
 }
