@@ -1,5 +1,5 @@
 .pg-wrapper {
-    padding-top: 50px;
+    padding-top: 100px;
     display: flex;
     flex-wrap: nowrap;
     flex-flow: row;
@@ -7,9 +7,22 @@
 
 .pg-sub-wrapper {
     h1 {
-        font: italic bold 3em "GoogleSans", "Inter", sans-serif;
+        margin: 0 0 40px;
+        font-family: "Google Sans", "Inter", sans-serif;
+        font-weight: 700;
+        font-style: italic;
+        font-size: 3em;
+        line-height: 0;
+    }
+    h2 {
+        margin: 0 0 10px;
+        font: bold 1.5em "GoogleSans", "Inter", sans-serif;
+    }
+    h3 {
+        font: bold 1em "GoogleSans", "Inter", sans-serif;
     }
     p {
+        margin: 0 0 5px;
         font: 1em "Inter", sans-serif;
     }
     display: flex;
@@ -27,12 +40,12 @@
 }
 
 .pg-item .left {
-    flex:0 0 28%;
+    flex:0 0 27%;
     order: 1;
 }
 
 .pg-item .right {
-    flex:0 0 28%;
+    flex:0 0 27%;
     order: 3;
 }
 
@@ -43,7 +56,7 @@
 
 @media (max-width: 800px) {
     .pg-item .left,
-     .pg-item .right{
+    .pg-item .right{
         flex: 0 0 10%;
     }
     .pg-item .main{
