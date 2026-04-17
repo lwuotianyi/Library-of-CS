@@ -52,6 +52,9 @@
 }
 
 @media (max-width: 800px), (orientation: portrait) {
+    body {
+        background-color: green;
+    }
     .pg-item .left,
     .pg-item .right{
         flex: 0 0 10%;
