@@ -52,8 +52,8 @@
 }
 
 @media (max-width: 800px), (orientation: portrait) {
-    body {
-        background-color: green;
+    .pg-wrapper {
+        padding-top: 70px;
     }
     .pg-item .left,
     .pg-item .right{
