@@ -16,6 +16,7 @@ class FillBlanks {
             input.type = "text";
             input.maxLength = 1;
             input.className = "fill-blanks";
+            input.autocapitalize = "off";
 
             this.container.appendChild(input);
             this.inputs.push(input);
