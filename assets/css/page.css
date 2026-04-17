@@ -51,7 +51,7 @@
     min-height: 10vh;
 }
 
-@media (max-width: 800px) or (orientation: portrait) {
+@media (max-width: 800px), (orientation: portrait) {
     .pg-item .left,
     .pg-item .right{
         flex: 0 0 10%;
