@@ -62,6 +62,6 @@ class FillBlanks {
     }
 }
 
-document.querySelectorAll(".fill-blanks-wrapper").forEach(el => {
+document.querySelectorAll(".fill-blanks").forEach(el => {
     new FillBlanks(el, el.dataset.target);
 });
