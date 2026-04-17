@@ -7,12 +7,12 @@
 
 .pg-sub-wrapper {
     h1 {
-        margin: 0 0 40px;
+        margin: 0 0 20px;
         font-family: "Google Sans", "Inter", sans-serif;
         font-weight: 700;
         font-style: italic;
         font-size: 3em;
-        line-height: 0;
+        line-height: 1;
     }
     h2 {
         margin: 0 0 10px;
@@ -22,7 +22,7 @@
         font: bold 1em "GoogleSans", "Inter", sans-serif;
     }
     p {
-        margin: 0 0 5px;
+        margin: 0 0 10px;
         font: 1em "Inter", sans-serif;
     }
     display: flex;
@@ -34,24 +34,21 @@
 }
 
 .pg-item {
+    .left {
+        flex:0 0 27%;
+        order: 1;
+    }
+    .right {
+        flex:0 0 27%;
+        order: 3;
+    }
+    .main {
+        flex:0 0 46%;
+        order: 2;
+    }
     display: flex;
     width: 100%;
     min-height: 10vh;
-}
-
-.pg-item .left {
-    flex:0 0 27%;
-    order: 1;
-}
-
-.pg-item .right {
-    flex:0 0 27%;
-    order: 3;
-}
-
-.pg-item .main {
-    flex:0 0 46%;
-    order: 2;
 }
 
 @media (max-width: 800px) {
