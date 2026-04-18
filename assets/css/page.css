@@ -51,7 +51,7 @@
     min-height: 10vh;
 }
 
-@media (max-width: 800px), (orientation: portrait) {
+@media (max-width: 900px), (orientation: portrait) {
     .pg-wrapper {
         padding-top: 70px;
     }
