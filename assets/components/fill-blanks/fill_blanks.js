@@ -29,6 +29,12 @@ class FillBlanks {
                 input.value = saved[i] || "";
             });
         }
+
+        if (this.matches()) {
+            this.container.dataset.state = "correct";
+        } else {
+            this.container.dataset.state = "incorrect";
+        }
     }
 
     attachEvents() {
