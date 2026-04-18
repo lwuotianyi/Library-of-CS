@@ -29,11 +29,12 @@ class FillBlanks {
                 input.value = saved[i] || "";
             });
         }
-
-        if (this.matches()) {
-            this.container.dataset.state = "correct";
-        } else {
-            this.container.dataset.state = "incorrect";
+        if(this.inputs[this.inputs.length - 1].value !== "") {
+            if (this.matches()) {
+                this.container.dataset.state = "correct";
+            } else {
+                this.container.dataset.state = "incorrect";
+            }
         }
     }
 
