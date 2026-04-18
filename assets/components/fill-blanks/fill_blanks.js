@@ -23,18 +23,15 @@ class FillBlanks {
         }
         this.attachEvents();
 
-        const saved = await loadValue(this.container.id);
-        if (saved) {
+        const savedValue = await loadValue(this.container.id);
+        const savedState = await loadState(this.container.id);
+        if (savedValue) {
             this.inputs.forEach((input, i) => {
-                input.value = saved[i] || "";
+                input.value = savedValue[i] || "";
             });
         }
-        if(this.inputs[this.inputs.length - 1].value !== "") {
-            if (this.matches()) {
-                this.container.dataset.state = "correct";
-            } else {
-                this.container.dataset.state = "incorrect";
-            }
+        if (savedState) {
+            this.container.dataset.state = savedState.value();
         }
     }
 
@@ -50,6 +47,7 @@ class FillBlanks {
                     } else {
                         this.container.dataset.state = "incorrect";
                     }
+                    await saveState(this.container.id, this.container.dataset.state);
                 }
                 await saveValue(this.container.id, this.getValue());
             });
@@ -57,6 +55,7 @@ class FillBlanks {
             input.addEventListener("keydown", async (e) => {
                 if (e.key === "Backspace") {
                     this.container.dataset.state = "unfilled";
+                    await saveState(this.container.id, this.container.dataset.state);
                     if(!input.value && index > 0) {
                         this.container.dataset.state = "unfilled";
                         const prev = this.inputs[index - 1];
@@ -102,10 +101,31 @@ async function saveValue(key, value) {
     return tx.complete;
 }
 
+async function saveState(key, value) {
+    const db = await openDB();
+    const tx = db.transaction("state", "readwrite");
+    const store = tx.objectStore("state");
+
+    store.put(value, key);
+
+    return tx.complete;
+}
+
 async function loadValue(key) {
     const db = await openDB();
     const tx = db.transaction("answers", "readonly");
     const store = tx.objectStore("answers");
+
+    return new Promise((resolve) => {
+        const request = store.get(key);
+        request.onsuccess = () => resolve(request.result);
+    });
+}
+
+async function loadState(key) {
+    const db = await openDB();
+    const tx = db.transaction("state", "readonly");
+    const store = tx.objectStore("state");
 
     return new Promise((resolve) => {
         const request = store.get(key);
