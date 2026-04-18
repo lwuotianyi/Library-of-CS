@@ -57,7 +57,6 @@ class FillBlanks {
                     this.container.dataset.state = "unfilled";
                     await saveState(this.container.id, this.container.dataset.state);
                     if(!input.value && index > 0) {
-                        this.container.dataset.state = "unfilled";
                         const prev = this.inputs[index - 1];
                         prev.focus();
                         const len = prev.value.length;
