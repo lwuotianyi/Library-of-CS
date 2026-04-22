@@ -55,13 +55,13 @@ class FillBlanks {
             input.addEventListener("keydown", async (e) => {
                 if (e.key === "Backspace") {
                     this.container.dataset.state = "unfilled";
-                    await saveState(this.container.id, this.container.dataset.state);
                     if(!input.value && index > 0) {
                         const prev = this.inputs[index - 1];
                         prev.focus();
                         const len = prev.value.length;
                         prev.setSelectionRange(len, len);
                     }
+                    await saveState(this.container.id, this.container.dataset.state);
                 }
                 await saveValue(this.container.id, this.getValue());
             })
@@ -84,6 +84,7 @@ function openDB() {
         request.onupgradeneeded = (e) => {
             const db = e.target.result;
             db.createObjectStore("answers");
+            db.createObjectStore("state");
         };
         request.onsuccess = () => resolve(request.result);
         request.onerror = () => reject(request.error);
