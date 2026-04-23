@@ -81,7 +81,7 @@ class FillBlanks {
 
 function openDB() {
     return new Promise((resolve, reject) => {
-        const request = indexedDB.open("Kruskal1", 1);
+        const request = indexedDB.open("Kruskal1", 2);
 
         request.onupgradeneeded = (e) => {
             const db = e.target.result;
