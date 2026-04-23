@@ -44,6 +44,6 @@ class FillCode {
     }
 }
 
-document.querySelectorAll(".fill-blank").forEach(el => {
+document.querySelectorAll(".fill-code").forEach(el => {
     new FillCode(el, el.dataset.target);
 });

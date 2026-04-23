@@ -30,8 +30,10 @@ class FillBlanks {
                 input.value = savedValue[i] || "";
             });
         }
-        if (savedState) {
-            this.container.dataset.state = savedState.value();
+        if (savedState !== undefined) {
+            this.container.dataset.state = savedState;
+        } else {
+            this.container.dataset.state ="unfilled";
         }
     }
 
@@ -103,7 +105,10 @@ async function saveValue(key, value) {
 
     store.put(value, key);
 
-    return tx.complete;
+    return new Promise((resolve, reject) => {
+        tx.oncomplete = () => resolve();
+        tx.onerror = () => reject(tx.error);
+    });
 }
 
 async function saveState(key, value) {
@@ -113,7 +118,10 @@ async function saveState(key, value) {
 
     store.put(value, key);
 
-    return tx.complete;
+    return new Promise((resolve, reject) => {
+        tx.oncomplete = () => resolve();
+        tx.onerror = () => reject(tx.error);
+    });
 }
 
 async function loadValue(key) {
