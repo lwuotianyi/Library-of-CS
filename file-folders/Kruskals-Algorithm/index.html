@@ -23,6 +23,11 @@
                 <div class="main">
                     <div class="pg-sub-wrapper">
                         <h1>Kruskal's Algorithm</h1>
+                        <p id="last-updated"></p>
+                        <script>
+                            document.getElementById("last-updated").textContent =
+                                "Last updated: " + document.lastModified;
+                        </script>
                         <h2>Description</h2>
                         <p>
                             Kruskal's algorithm finds a maximum or
@@ -36,7 +41,7 @@
                         </p>
                         <h2>Time Complexity</h2>
                         <p>
-                            \(O(Elog(E))=O(Elog(V^2))=O(\)
+                            \(O(Elog(E))\), which when having the most edges is \(O(Elog(V^2))=O(\)
                             <span class="fill-blanks" data-target="Elog(V)"></span>
                             \()\) but most likely the first if you had to pick between them for UIL.
                         </p>
