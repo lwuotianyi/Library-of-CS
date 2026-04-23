@@ -31,18 +31,18 @@
                         <h2>Description</h2>
                         <p>
                             Kruskal's algorithm finds a maximum or
-                            <span class="fill-blanks" data-target="minimum"></span>
+                            <span class="fill-blanks" id="fb1" data-target="minimum"></span>
                             spanning forest of an undirected edge-weighted graph. If the graph is connected, the algorithm finds the maximum or minimum spanning tree.
                         </p>
                         <p>
                             It uses a greedy algorithm that adds to the forest the lowest/highest-weight
-                            <span class="fill-blanks" data-target="edge"></span>
+                            <span class="fill-blanks" id="fb2" data-target="edge"></span>
                             that will not form a cycle. Note that the sorting is a part of the algorithm, unless edges are given in a sorted manner.
                         </p>
                         <h2>Time Complexity</h2>
                         <p>
                             \(O(E\log(E))\), which in the case with maximum edges is \(O(E\log(V^2))=O(\)
-                            <span class="fill-blanks" data-target="Elog(V)"></span>
+                            <span class="fill-blanks" id="fb3" data-target="Elog(V)"></span>
                             \()\) but most likely the first if you had to pick between them for UIL.
                         </p>
                         <h2>Implementation</h2>
