@@ -83,8 +83,13 @@ function openDB() {
 
         request.onupgradeneeded = (e) => {
             const db = e.target.result;
-            db.createObjectStore("answers");
-            db.createObjectStore("state");
+            if (!db.objectStoreNames.contains("answers")) {
+                db.createObjectStore("answers");
+            }
+
+            if (!db.objectStoreNames.contains("state")) {
+                db.createObjectStore("state");
+            }
         };
         request.onsuccess = () => resolve(request.result);
         request.onerror = () => reject(request.error);
