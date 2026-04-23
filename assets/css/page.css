@@ -64,9 +64,9 @@
     }
 }
 
-#last-updated {
-    margin: 0 0 30px;
-    font: italic 0.8em "Inter";
+.last-updated {
+    margin: 0 0 20px !important;
+    font: italic 0.8em "Inter" !important;
     color: #BBBBBB;
 }
 
