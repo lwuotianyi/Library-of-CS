@@ -1,3 +1,5 @@
+import * as idb from "../inddb/inddb.js";
+
 class FillBlanks {
     constructor(container, target= null) {
         this.container = container;
@@ -23,8 +25,8 @@ class FillBlanks {
         }
         this.attachEvents();
 
-        const savedValue = await loadValue(this.container.id);
-        const savedState = await loadState(this.container.id);
+        const savedValue = await idb.loadValue(this.container.id, "value", 3);
+        const savedState = await idb.loadValue(this.container.id, "state", 3);
         if (savedValue) {
             this.inputs.forEach((input, i) => {
                 input.value = savedValue[i] || "";
@@ -49,9 +51,9 @@ class FillBlanks {
                     } else {
                         this.container.dataset.state = "incorrect";
                     }
-                    await saveState(this.container.id, this.container.dataset.state);
+                    await idb.saveValue(this.container.id, this.container.dataset.state, "state", 3);
                 }
-                await saveValue(this.container.id, this.getValue());
+                await idb.saveValue(this.container.id, this.getValue(), "value", 3);
             });
 
             input.addEventListener("keydown", async (e) => {
@@ -63,9 +65,9 @@ class FillBlanks {
                         const len = prev.value.length;
                         prev.setSelectionRange(len, len);
                     }
-                    await saveState(this.container.id, this.container.dataset.state);
+                    await idb.saveValue(this.container.id, this.container.dataset.state, "state", 3);
                 }
-                await saveValue(this.container.id, this.getValue());
+                await idb.saveValue(this.container.id, this.getValue(), "value", 3);
             })
         })
     }
@@ -77,73 +79,6 @@ class FillBlanks {
     matches() {
         return this.target ? this.getValue() === this.target : null;
     }
-}
-
-function openDB() {
-    return new Promise((resolve, reject) => {
-        const request = indexedDB.open("Kruskal1", 2);
-
-        request.onupgradeneeded = (e) => {
-            const db = e.target.result;
-            if (!db.objectStoreNames.contains("answers")) {
-                db.createObjectStore("answers");
-            }
-
-            if (!db.objectStoreNames.contains("state")) {
-                db.createObjectStore("state");
-            }
-        };
-        request.onsuccess = () => resolve(request.result);
-        request.onerror = () => reject(request.error);
-    });
-}
-
-async function saveValue(key, value) {
-    const db = await openDB();
-    const tx = db.transaction("answers", "readwrite");
-    const store = tx.objectStore("answers");
-
-    store.put(value, key);
-
-    return new Promise((resolve, reject) => {
-        tx.oncomplete = () => resolve();
-        tx.onerror = () => reject(tx.error);
-    });
-}
-
-async function saveState(key, value) {
-    const db = await openDB();
-    const tx = db.transaction("state", "readwrite");
-    const store = tx.objectStore("state");
-
-    store.put(value, key);
-
-    return new Promise((resolve, reject) => {
-        tx.oncomplete = () => resolve();
-        tx.onerror = () => reject(tx.error);
-    });
-}
-
-async function loadValue(key) {
-    const db = await openDB();
-    const tx = db.transaction("answers", "readonly");
-    const store = tx.objectStore("answers");
-
-    return new Promise((resolve) => {
-        const request = store.get(key);
-        request.onsuccess = () => resolve(request.result);
-    });
-}
-
-async function loadState(key) {
-    const db = await openDB();
-    const tx = db.transaction("state", "readonly");
-    const store = tx.objectStore("state");
-
-    return new Promise((resolve) => {
-        const request = store.get(key);
-        request.onsuccess = () => resolve(request.result);
-    });
 }
 
 document.querySelectorAll(".fill-blanks").forEach(el => {

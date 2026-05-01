@@ -1,3 +1,5 @@
+import * as idb from "../inddb/inddb.js";
+
 class FillCode {
     constructor(input, target = null) {
         this.input = input;
@@ -17,8 +19,8 @@ class FillCode {
 
         this.attachEvents();
 
-        const savedValue = await loadValue(this.input.id);
-        const savedState = await loadState(this.input.id);
+        const savedValue = await idb.loadValue(this.container.id, "value", 3);
+        const savedState = await idb.loadValue(this.container.id, "state", 3);
         if (savedValue) {
             this.input.value = savedValue.value();
         }
