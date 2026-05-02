@@ -1,0 +1,21 @@
+.fill-code:focus {
+    border-bottom: 2px solid #111111;
+}
+
+.fill-code {
+    display: inline-flex;
+    text-align: left;
+    font: 1em monospace, sans-serif;
+    field-sizing: fixed;
+    border: none;
+    border-bottom: 2px solid #BBBBBB;
+    outline: none;
+
+    &[data-state="correct"] {
+        border-bottom: 2px solid #9bd09b;
+    }
+
+    &[data-state="incorrect"] {
+        border-bottom: 2px solid palevioletred;
+    }
+}

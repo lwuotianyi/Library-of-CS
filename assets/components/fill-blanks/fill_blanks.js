@@ -35,7 +35,7 @@ class FillBlanks {
         if (savedState !== undefined) {
             this.container.dataset.state = savedState;
         } else {
-            this.container.dataset.state ="unfilled";
+            this.container.dataset.state = "unfilled";
         }
     }
 

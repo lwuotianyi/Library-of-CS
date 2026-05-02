@@ -4,17 +4,33 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Kruskal's Algorithm</title>
+        <!-- External -->
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+        <script>
+            MathJax = {
+                options: {
+                    enableMenu: false,
+                    menuOptions: {
+                        settings: {
+                            speech: false,
+                            braille: false,
+                            explorer: false
+                        }
+                    }
+                }
+            };
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/java.min.js"></script>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/panda-syntax-light.min.css">
+
         <link rel="stylesheet" href="../../assets/css/main.css">
         <link rel="stylesheet" href="../../assets/css/page.css">
         <link rel="stylesheet" href="../../assets/css/fonts.css">
         <script type="module" src="../../assets/components/inddb/inddb.js" defer></script>
         <script type="module" src="../../assets/components/fill-blanks/fill_blanks.js" defer></script><link rel="stylesheet" href="../../assets/components/fill-blanks/fill_blanks.css">
-        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/java.min.js"></script>
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/panda-syntax-light.min.css">
-        <script>hljs.highlightAll();</script>
+        <script type="module" src="../../assets/components/fill-code/fill_code.js" defer></script><link rel="stylesheet" href="../../assets/components/fill-code/fill_code.css">
+
     </head>
     <body>
         <div class="pg-wrapper">
@@ -47,6 +63,10 @@
                             \()\) but most likely the first if you had to pick between them for UIL.
                         </p>
                         <h2>Implementation</h2>
+                        <p>
+                            Let's look at an implementation for <a href="https://cses.fi/problemset/submit/1675/">CSES - Road Reparation</a>.
+                            Please note that this code will not run in CSES since it is written in Java 25, and CSES uses Java 8.
+                        </p>
                         <pre><code class="language-java">import java.util.*;
 
 class DSU{
@@ -72,11 +92,11 @@ class DSU{
 
 class Road_Reparation {
     int n, m;
-    ArrayList&lt;int[]> mst;
-    int[][] edges = new int[m][3];
+    ArrayList&lt;int[]&gt; mst;
+    int[][] edges = new int[__FILL_m_fb4__][3];
 
     int kruskal(int n, int m){
-        DSU dsu = new DSU(n+1);
+        DSU dsu = new DSU(__FILL_n_fb5__+1);
         mst = new ArrayList<>();
         Arrays.sort(edges, (a, b) -> Integer.compare(a[2], b[2]));
         int edgesum = 0;
@@ -84,15 +104,20 @@ class Road_Reparation {
             int a = edges[i][0], b = edges[i][1], w = edges[i][2];
             if(dsu.find(a) == dsu.find(b))
                 continue;
-            dsu.union(a, b);
-            mst.add(new int[] {a, b, w});
-            edgesum += w;
+            dsu.__FILL_union_fb6__(a, b);
+            mst.add(new int[] {a, b, __FILL_w_fb7__});
+            __FILL_edgesum_fb7__ += w;
         }
         return edgesum;
     }
 
-    public static void main(String[] args) {
-
+    void main(String[] args) throws IOException {
+        n = sc.nextInt(); m = sc.nextInt();
+        edges = new int[m][3];
+        for(int i = 0; i < m; i++) {
+            edges[i][0] = sc.nextInt(); edges[i][1] = sc.nextInt(); edges[i][2] = sc.nextInt();
+        }
+        System.out.println(kruskal(n, m));
     }
 }
                         </code></pre>
